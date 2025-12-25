@@ -4,7 +4,7 @@ import com.ledgerlite.core.domain.vo.Money
 import java.time.LocalDate
 
 data class Expense private constructor(
-    val id: Long?,
+    var id: Long?,
     val vendor: String,
     val grossAmount: Money,
     val taxAmount: Money,

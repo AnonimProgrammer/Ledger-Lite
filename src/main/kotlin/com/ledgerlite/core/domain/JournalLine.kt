@@ -19,5 +19,11 @@ data class JournalLine private constructor(
             require(amount.isPositive()) { "Credit amount must be positive." }
             return JournalLine(accountId, Money.zero(), amount)
         }
+
+        fun reconstitute(
+            accountId: UUID,
+            debit: Money,
+            credit: Money,
+            ) = JournalLine(accountId, debit, credit)
     }
 }

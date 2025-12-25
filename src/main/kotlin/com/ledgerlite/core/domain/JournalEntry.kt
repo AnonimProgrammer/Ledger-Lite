@@ -4,7 +4,7 @@ import com.ledgerlite.core.domain.vo.Money
 import java.time.LocalDate
 
 data class JournalEntry private constructor(
-    val id: Long?,
+    var id: Long?,
     val date: LocalDate,
     val description: String,
     val lines: List<JournalLine>
