@@ -30,8 +30,8 @@ class AccountRepositoryAdapter(
         findRequired(AccountType.REVENUE, "Revenue")
 
     private fun findRequired(type: AccountType, name: String): Account {
-        val entity = jpaRepository.findByName(name)
-            ?: throw MissingAccountException(name)
+        val entity = jpaRepository.findByNameAndType(name, type)
+            .orElseThrow { MissingAccountException(name) }
 
         return AccountMapper.toDomain(entity)
     }
