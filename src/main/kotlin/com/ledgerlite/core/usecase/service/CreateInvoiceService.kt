@@ -1,23 +1,24 @@
 package com.ledgerlite.core.usecase.service
 
-import com.ledgerlite.core.domain.Invoice
-import com.ledgerlite.core.dto.command.CreateInvoiceCommand
-import com.ledgerlite.core.dto.result.InvoiceResult
+import com.ledgerlite.core.usecase.dto.command.CreateInvoiceCommand
+import com.ledgerlite.core.usecase.dto.result.InvoiceResult
 import com.ledgerlite.core.usecase.`in`.CreateInvoiceUseCase
+import com.ledgerlite.core.usecase.mapper.InvoiceMapper
 import com.ledgerlite.core.usecase.out.InvoiceRepository
+import java.util.logging.Logger
 
 class CreateInvoiceService(
-    private val invoiceRepository: InvoiceRepository
+    private val invoiceRepository: InvoiceRepository,
+    private val logger: Logger = Logger.getLogger(CreateInvoiceService::class.java.name),
 ) : CreateInvoiceUseCase {
 
     override fun execute(command: CreateInvoiceCommand): InvoiceResult {
-        val invoice = Invoice.create(
-            customerId = command.customerId,
-            dueDate = command.dueDate,
-            items = command.items
-        )
+        logger.info("Creating invoice. Customer ID: ${command.customerId}")
 
-        val saved = invoiceRepository.save(invoice)
-        return InvoiceResult.from(saved)
+        val invoice = InvoiceMapper.to(command)
+        val savedInvoice = invoiceRepository.save(invoice)
+        logger.info("Invoice created. ID: ${savedInvoice.id}")
+
+        return InvoiceMapper.from(savedInvoice)
     }
 }

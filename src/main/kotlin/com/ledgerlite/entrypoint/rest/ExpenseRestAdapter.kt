@@ -1,7 +1,7 @@
 package com.ledgerlite.entrypoint.rest
 
-import com.ledgerlite.core.dto.command.CreateExpenseCommand
-import com.ledgerlite.core.dto.result.ExpenseResult
+import com.ledgerlite.core.usecase.dto.command.CreateExpenseCommand
+import com.ledgerlite.core.usecase.dto.result.ExpenseResult
 import com.ledgerlite.core.usecase.`in`.CreateExpenseUseCase
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity

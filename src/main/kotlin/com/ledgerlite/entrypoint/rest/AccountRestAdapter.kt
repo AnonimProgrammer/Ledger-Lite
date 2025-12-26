@@ -1,7 +1,7 @@
 package com.ledgerlite.entrypoint.rest
 
-import com.ledgerlite.core.dto.command.CreateAccountCommand
-import com.ledgerlite.core.dto.result.AccountResult
+import com.ledgerlite.core.usecase.dto.command.CreateAccountCommand
+import com.ledgerlite.core.usecase.dto.result.AccountResult
 import com.ledgerlite.core.usecase.`in`.CreateAccountUseCase
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity

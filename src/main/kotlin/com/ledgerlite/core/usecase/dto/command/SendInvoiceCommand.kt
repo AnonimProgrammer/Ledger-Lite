@@ -1,4 +1,4 @@
-package com.ledgerlite.core.dto.command
+package com.ledgerlite.core.usecase.dto.command
 
 import java.util.UUID
 

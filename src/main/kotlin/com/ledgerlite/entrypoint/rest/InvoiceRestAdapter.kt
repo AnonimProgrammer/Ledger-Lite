@@ -1,9 +1,9 @@
 package com.ledgerlite.entrypoint.rest
 
-import com.ledgerlite.core.dto.command.CreateInvoiceCommand
-import com.ledgerlite.core.dto.command.MarkInvoicePaidCommand
-import com.ledgerlite.core.dto.command.SendInvoiceCommand
-import com.ledgerlite.core.dto.result.InvoiceResult
+import com.ledgerlite.core.usecase.dto.command.CreateInvoiceCommand
+import com.ledgerlite.core.usecase.dto.command.MarkInvoicePaidCommand
+import com.ledgerlite.core.usecase.dto.command.SendInvoiceCommand
+import com.ledgerlite.core.usecase.dto.result.InvoiceResult
 import com.ledgerlite.core.usecase.`in`.CreateInvoiceUseCase
 import com.ledgerlite.core.usecase.`in`.MarkInvoicePaidUseCase
 import com.ledgerlite.core.usecase.`in`.SendInvoiceUseCase
