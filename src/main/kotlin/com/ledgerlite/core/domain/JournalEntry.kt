@@ -3,6 +3,7 @@ package com.ledgerlite.core.domain
 import com.ledgerlite.core.domain.vo.Money
 import java.time.LocalDate
 
+@ConsistentCopyVisibility
 data class JournalEntry private constructor(
     var id: Long?,
     val date: LocalDate,

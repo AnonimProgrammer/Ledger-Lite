@@ -3,6 +3,7 @@ package com.ledgerlite.core.domain
 import com.ledgerlite.core.domain.vo.Money
 import java.util.UUID
 
+@ConsistentCopyVisibility
 data class JournalLine private constructor(
     val accountId: UUID,
     val debit: Money,

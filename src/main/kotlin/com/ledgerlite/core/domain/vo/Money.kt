@@ -2,6 +2,7 @@ package com.ledgerlite.core.domain.vo
 
 import java.math.BigDecimal
 
+@ConsistentCopyVisibility
 data class Money private constructor(
     val amount: BigDecimal
 ) {

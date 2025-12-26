@@ -3,6 +3,7 @@ package com.ledgerlite.core.domain
 import com.ledgerlite.core.domain.vo.Money
 import java.time.LocalDate
 
+@ConsistentCopyVisibility
 data class Expense private constructor(
     var id: Long?,
     val vendor: String,

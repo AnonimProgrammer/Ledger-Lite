@@ -1,5 +1,6 @@
 package com.ledgerlite.core.domain
 
+import com.ledgerlite.core.domain.error.InvalidInvoiceStateException
 import com.ledgerlite.core.domain.vo.InvoiceStatus
 import com.ledgerlite.core.domain.vo.InvoiceItem
 import com.ledgerlite.core.domain.vo.Money
@@ -16,14 +17,14 @@ data class Invoice(
 
     fun send(): Invoice {
         require(status == InvoiceStatus.DRAFT) {
-            "Only draft invoices can be sent."
+            InvalidInvoiceStateException("Only DRAFT invoices can be sent.")
         }
         return copy(status = InvoiceStatus.SENT)
     }
 
     fun markPaid(): Invoice {
         require(status == InvoiceStatus.SENT) {
-            "Only sent invoices can be paid."
+            InvalidInvoiceStateException("Only SENT invoices can be paid.")
         }
         return copy(status = InvoiceStatus.PAID)
     }
