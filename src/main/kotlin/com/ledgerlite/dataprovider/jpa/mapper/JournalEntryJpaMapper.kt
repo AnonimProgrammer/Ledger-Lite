@@ -6,7 +6,7 @@ import com.ledgerlite.core.domain.vo.Money
 import com.ledgerlite.dataprovider.jpa.entity.JournalEntryJpaEntity
 import com.ledgerlite.dataprovider.jpa.entity.embeddable.JournalLineEmbeddable
 
-object JournalEntryMapper {
+object JournalEntryJpaMapper {
 
     fun toJpa(domain: JournalEntry): JournalEntryJpaEntity =
         JournalEntryJpaEntity(

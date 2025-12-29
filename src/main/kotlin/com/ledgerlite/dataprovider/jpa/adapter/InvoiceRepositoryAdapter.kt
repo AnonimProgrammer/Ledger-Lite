@@ -3,7 +3,7 @@ package com.ledgerlite.dataprovider.jpa.adapter
 import com.ledgerlite.core.domain.Invoice
 import com.ledgerlite.core.usecase.out.InvoiceRepository
 import com.ledgerlite.dataprovider.exception.InvoiceNotFoundException
-import com.ledgerlite.dataprovider.jpa.mapper.InvoiceMapper
+import com.ledgerlite.dataprovider.jpa.mapper.InvoiceJpaMapper
 import com.ledgerlite.dataprovider.jpa.repository.SpringInvoiceJpaRepository
 import java.util.UUID
 
@@ -12,9 +12,9 @@ class InvoiceRepositoryAdapter(
 ) : InvoiceRepository {
 
     override fun save(invoice: Invoice): Invoice {
-        val entity = InvoiceMapper.toJpa(invoice)
+        val entity = InvoiceJpaMapper.toJpa(invoice)
         val saved = jpaRepository.save(entity)
-        return InvoiceMapper.toDomain(saved)
+        return InvoiceJpaMapper.toDomain(saved)
     }
 
     override fun findById(id: UUID): Invoice {
@@ -22,6 +22,6 @@ class InvoiceRepositoryAdapter(
             .orElseThrow {
                 InvoiceNotFoundException(id)
             }
-        return InvoiceMapper.toDomain(entity)
+        return InvoiceJpaMapper.toDomain(entity)
     }
 }

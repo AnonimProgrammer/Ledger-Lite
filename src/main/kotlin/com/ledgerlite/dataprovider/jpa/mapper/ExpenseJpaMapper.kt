@@ -4,7 +4,7 @@ import com.ledgerlite.core.domain.Expense
 import com.ledgerlite.core.domain.vo.Money
 import com.ledgerlite.dataprovider.jpa.entity.ExpenseJpaEntity
 
-object ExpenseMapper {
+object ExpenseJpaMapper {
 
     fun toDomain(entity: ExpenseJpaEntity): Expense {
         val expense = Expense.create(

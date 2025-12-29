@@ -4,7 +4,10 @@ import com.ledgerlite.core.domain.vo.AccountType
 import java.util.UUID
 
 data class AccountResult(
-    var id: UUID?,
-    var name: String,
-    var type: AccountType,
+    val id: UUID,
+    val code: String,
+    val name: String,
+    val type: AccountType,
+    val isSystemAccount: Boolean,
+    val currency: String,
 )

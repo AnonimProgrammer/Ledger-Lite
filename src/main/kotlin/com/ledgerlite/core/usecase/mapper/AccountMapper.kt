@@ -8,7 +8,10 @@ object AccountMapper {
     fun from(account: Account): AccountResult =
         AccountResult(
             id = account.id,
+            code = account.code,
             name = account.name,
-            type = account.type
+            type = account.type,
+            isSystemAccount = account.isSystemAccount,
+            currency = account.currency,
         )
 }

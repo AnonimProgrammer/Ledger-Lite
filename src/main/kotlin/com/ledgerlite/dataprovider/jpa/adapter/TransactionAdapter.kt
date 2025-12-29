@@ -6,6 +6,5 @@ import jakarta.transaction.Transactional
 open class TransactionAdapter : TransactionPort {
 
     @Transactional
-    override fun <T> inTransaction(block: () -> T): T =
-        block()
+    override fun <T> inTransaction(block: () -> T): T = block()
 }

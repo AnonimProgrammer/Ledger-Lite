@@ -1,6 +1,5 @@
 package com.ledgerlite.configuration
 
-import com.ledgerlite.core.usecase.`in`.CreateAccountUseCase
 import com.ledgerlite.core.usecase.`in`.CreateExpenseUseCase
 import com.ledgerlite.core.usecase.`in`.CreateInvoiceUseCase
 import com.ledgerlite.core.usecase.`in`.MarkInvoicePaidUseCase
@@ -10,7 +9,6 @@ import com.ledgerlite.core.usecase.out.ExpenseRepository
 import com.ledgerlite.core.usecase.out.InvoiceRepository
 import com.ledgerlite.core.usecase.out.JournalEntryRepository
 import com.ledgerlite.core.usecase.out.TransactionPort
-import com.ledgerlite.core.usecase.service.CreateAccountService
 import com.ledgerlite.core.usecase.service.CreateExpenseService
 import com.ledgerlite.core.usecase.service.CreateInvoiceService
 import com.ledgerlite.core.usecase.service.MarkInvoicePaidService
@@ -38,11 +36,6 @@ class UseCaseConfiguration {
     fun createInvoiceUseCase(
         invoiceRepository: InvoiceRepository,
     ): CreateInvoiceUseCase = CreateInvoiceService(invoiceRepository)
-
-    @Bean
-    fun createAccountUseCase(
-        accountRepository: AccountRepository,
-    ): CreateAccountUseCase = CreateAccountService(accountRepository)
 
     @Bean
     fun sendInvoiceUseCase(

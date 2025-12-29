@@ -4,13 +4,17 @@ import com.ledgerlite.core.domain.Account
 
 interface AccountRepository {
 
-    fun save(account: Account): Account
+    fun findByCode(code: String): Account
 
-    fun findCashAccount(): Account
+    fun findCashAccount(): Account =
+        findByCode("CASH")
 
-    fun findExpenseAccount(): Account
+    fun findAccountsReceivable(): Account =
+        findByCode("AR")
 
-    fun findAccountsReceivable(): Account
+    fun findRevenueAccount(): Account =
+        findByCode("REV")
 
-    fun findRevenueAccount(): Account
+    fun findExpenseAccount(): Account =
+        findByCode("EXP")
 }

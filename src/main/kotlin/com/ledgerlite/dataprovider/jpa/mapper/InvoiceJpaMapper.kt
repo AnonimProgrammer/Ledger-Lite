@@ -6,7 +6,7 @@ import com.ledgerlite.core.domain.vo.Money
 import com.ledgerlite.dataprovider.jpa.entity.InvoiceJpaEntity
 import com.ledgerlite.dataprovider.jpa.entity.embeddable.InvoiceItemEmbeddable
 
-object InvoiceMapper {
+object InvoiceJpaMapper {
 
     fun toJpa(domain: Invoice): InvoiceJpaEntity =
         InvoiceJpaEntity(

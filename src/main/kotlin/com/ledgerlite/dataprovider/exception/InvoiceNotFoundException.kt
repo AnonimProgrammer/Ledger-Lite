@@ -4,5 +4,4 @@ import java.util.UUID
 
 class InvoiceNotFoundException(
     invoiceId: UUID,
-): RuntimeException("Invoice with id: $invoiceId not found.") {
-}
+    ): RuntimeException("Invoice with id: $invoiceId not found.")
