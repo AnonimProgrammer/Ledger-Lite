@@ -1,0 +1,44 @@
+databaseChangeLog:
+  - changeSet:
+      id: 002-seed-system-accounts
+      author: omarismayilov
+      changes:
+        - insert:
+            tableName: accounts
+            columns:
+              - column: { name: id, valueComputed: gen_random_uuid() }
+              - column: { name: code, value: CASH }
+              - column: { name: name, value: Cash }
+              - column: { name: type, value: ASSET }
+              - column: { name: is_system_account, valueBoolean: true }
+              - column: { name: currency, value: AZN }
+
+        - insert:
+            tableName: accounts
+            columns:
+              - column: { name: id, valueComputed: gen_random_uuid() }
+              - column: { name: code, value: AR }
+              - column: { name: name, value: Accounts Receivable }
+              - column: { name: type, value: ASSET }
+              - column: { name: is_system_account, valueBoolean: true }
+              - column: { name: currency, value: AZN }
+
+        - insert:
+            tableName: accounts
+            columns:
+              - column: { name: id, valueComputed: gen_random_uuid() }
+              - column: { name: code, value: REV }
+              - column: { name: name, value: Revenue }
+              - column: { name: type, value: REVENUE }
+              - column: { name: is_system_account, valueBoolean: true }
+              - column: { name: currency, value: AZN }
+
+        - insert:
+            tableName: accounts
+            columns:
+              - column: { name: id, valueComputed: gen_random_uuid() }
+              - column: { name: code, value: EXP }
+              - column: { name: name, value: Expense }
+              - column: { name: type, value: EXPENSE }
+              - column: { name: is_system_account, valueBoolean: true }
+              - column: { name: currency, value: AZN }
