@@ -27,10 +27,10 @@ class GetTrialBalanceService(
         val accounts = accountRepository.findAll()
         val lines = journalEntryRepository.findJournalLinesBetween(from, to)
 
-        return buildTrialBalanceResult(from, to, accounts, lines)
+        return buildResult(from, to, accounts, lines)
     }
 
-    private fun buildTrialBalanceResult(
+    private fun buildResult(
         from: LocalDate,
         to: LocalDate,
         accounts: List<Account>,
@@ -38,7 +38,7 @@ class GetTrialBalanceService(
         ): TrialBalanceResult {
 
         val groupedAccounts = lines.groupBy { it.accountId }
-        val trialLines = accounts.map { account -> buildTrialBalanceLines(account, groupedAccounts) }
+        val trialLines = accounts.map { account -> buildLines(account, groupedAccounts) }
 
         val totalDebit = calculateTotalDebit(trialLines)
         val totalCredit = calculateTotalCredit(trialLines)
@@ -56,14 +56,14 @@ class GetTrialBalanceService(
     private fun calculateTotalDebit(trialLines: List<TrialBalanceLine>): BigDecimal =
         trialLines
             .filter { it.balanceSide == BalanceSide.DEBIT }
-            .fold(BigDecimal.ZERO) { acc, line -> acc + line.balance }
+            .fold(BigDecimal.ZERO) { acc, line -> acc.add(line.balance) }
 
     private fun calculateTotalCredit(trialLines: List<TrialBalanceLine>): BigDecimal =
         trialLines
             .filter { it.balanceSide == BalanceSide.CREDIT }
-            .fold(BigDecimal.ZERO) { acc, line -> acc + line.balance }
+            .fold(BigDecimal.ZERO) { acc, line -> acc.add(line.balance) }
 
-    private fun buildTrialBalanceLines(
+    private fun buildLines(
         account: Account,
         groupedAccounts: Map<UUID, List<JournalLine>>
     ): TrialBalanceLine {

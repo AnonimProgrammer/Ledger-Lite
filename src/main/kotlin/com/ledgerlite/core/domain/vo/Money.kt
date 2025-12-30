@@ -10,9 +10,9 @@ data class Money private constructor(
     fun isZero(): Boolean = amount.compareTo(BigDecimal.ZERO) == 0
     fun absolute(): Money = of(amount.abs())
 
-    operator fun plus(other: Money) = Money(this.amount + other.amount)
-    operator fun minus(other: Money) = Money(this.amount - other.amount)
-    operator fun times(other: Int) = Money(this.amount * other.toBigDecimal())
+    operator fun plus(other: Money) = Money(this.amount.add(other.amount))
+    operator fun minus(other: Money) = Money(this.amount.subtract(other.amount))
+    operator fun times(other: Int) = Money(this.amount.multiply(other.toBigDecimal()))
 
     companion object {
         fun of(value: BigDecimal): Money {
