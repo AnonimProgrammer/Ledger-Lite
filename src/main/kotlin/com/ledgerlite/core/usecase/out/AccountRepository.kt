@@ -4,6 +4,8 @@ import com.ledgerlite.core.domain.Account
 
 interface AccountRepository {
 
+    fun findAll(): List<Account>
+
     fun findByCode(code: String): Account
 
     fun findCashAccount(): Account =

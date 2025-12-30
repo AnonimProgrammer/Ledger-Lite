@@ -1,6 +1,5 @@
-package com.ledgerlite.core.domain
+package com.ledgerlite.core.domain.vo
 
-import com.ledgerlite.core.domain.vo.Money
 import java.util.UUID
 
 @ConsistentCopyVisibility

@@ -1,22 +1,23 @@
 package com.ledgerlite.core.usecase.service
 
 import com.ledgerlite.core.domain.JournalEntry
-import com.ledgerlite.core.domain.JournalLine
+import com.ledgerlite.core.domain.vo.JournalLine
 import com.ledgerlite.core.usecase.dto.command.MarkInvoicePaidCommand
 import com.ledgerlite.core.usecase.`in`.MarkInvoicePaidUseCase
 import com.ledgerlite.core.usecase.out.AccountRepository
 import com.ledgerlite.core.usecase.out.InvoiceRepository
 import com.ledgerlite.core.usecase.out.JournalEntryRepository
 import com.ledgerlite.core.usecase.out.TransactionPort
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import java.time.LocalDate
-import java.util.logging.Logger
 
 class MarkInvoicePaidService(
     private val invoiceRepository: InvoiceRepository,
     private val journalEntryRepository: JournalEntryRepository,
     private val accountRepository: AccountRepository,
     private val transactionPort: TransactionPort,
-    private val logger: Logger = Logger.getLogger(MarkInvoicePaidService::class.java.name),
+    private val logger: Logger = LoggerFactory.getLogger(MarkInvoicePaidService::class.java.name),
 ) : MarkInvoicePaidUseCase {
 
     override fun execute(command: MarkInvoicePaidCommand) {
@@ -35,8 +36,8 @@ class MarkInvoicePaidService(
                 date = LocalDate.now(),
                 description = "Invoice paid: ${paidInvoice.id}",
                 lines = listOf(
-                    JournalLine.debit(cashAccount.id!!, totalAmount),
-                    JournalLine.credit(arAccount.id!!, totalAmount)
+                    JournalLine.debit(cashAccount.id, totalAmount),
+                    JournalLine.credit(arAccount.id, totalAmount)
                 )
             )
             invoiceRepository.save(paidInvoice)

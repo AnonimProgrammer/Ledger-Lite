@@ -2,7 +2,7 @@ package com.ledgerlite.core.usecase.service
 
 import com.ledgerlite.core.domain.Expense
 import com.ledgerlite.core.domain.JournalEntry
-import com.ledgerlite.core.domain.JournalLine
+import com.ledgerlite.core.domain.vo.JournalLine
 import com.ledgerlite.core.domain.vo.Money
 import com.ledgerlite.core.usecase.dto.command.CreateExpenseCommand
 import com.ledgerlite.core.usecase.dto.result.ExpenseResult
@@ -12,14 +12,15 @@ import com.ledgerlite.core.usecase.out.AccountRepository
 import com.ledgerlite.core.usecase.out.ExpenseRepository
 import com.ledgerlite.core.usecase.out.JournalEntryRepository
 import com.ledgerlite.core.usecase.out.TransactionPort
-import java.util.logging.Logger
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 class CreateExpenseService(
     private val expenseRepository: ExpenseRepository,
     private val journalEntryRepository: JournalEntryRepository,
     private val accountRepository: AccountRepository,
     private val transactionPort: TransactionPort,
-    private val logger: Logger = Logger.getLogger(CreateExpenseService::class.java.name),
+    private val logger: Logger = LoggerFactory.getLogger(CreateExpenseService::class.java.name),
 ) : CreateExpenseUseCase {
 
     override fun execute(command: CreateExpenseCommand): ExpenseResult {
@@ -39,8 +40,8 @@ class CreateExpenseService(
                 date = command.date,
                 description = "Expense: ${command.vendor}",
                 lines = listOf(
-                    JournalLine.debit(expenseAccount.id!!, Money.of(command.grossAmount)),
-                    JournalLine.credit(cashAccount.id!!, Money.of(command.grossAmount))
+                    JournalLine.debit(expenseAccount.id, Money.of(command.grossAmount)),
+                    JournalLine.credit(cashAccount.id, Money.of(command.grossAmount))
                 )
             )
             val savedExpense = expenseRepository.save(expense)

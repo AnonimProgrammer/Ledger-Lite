@@ -11,6 +11,11 @@ class AccountRepositoryAdapter(
 
 ) : AccountRepository {
 
+    override fun findAll(): List<Account> {
+        val entities = jpaRepository.findAll()
+        return entities.map { AccountJpaMapper.toDomain(it) }
+    }
+
     override fun findByCode(code: String): Account {
         val entity = jpaRepository.findByCode(code)
             .orElseThrow { MissingAccountException(code) }

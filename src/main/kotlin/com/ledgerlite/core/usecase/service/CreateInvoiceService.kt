@@ -5,11 +5,12 @@ import com.ledgerlite.core.usecase.dto.result.InvoiceResult
 import com.ledgerlite.core.usecase.`in`.CreateInvoiceUseCase
 import com.ledgerlite.core.usecase.mapper.InvoiceMapper
 import com.ledgerlite.core.usecase.out.InvoiceRepository
-import java.util.logging.Logger
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 class CreateInvoiceService(
     private val invoiceRepository: InvoiceRepository,
-    private val logger: Logger = Logger.getLogger(CreateInvoiceService::class.java.name),
+    private val logger: Logger = LoggerFactory.getLogger(CreateInvoiceService::class.java.name),
 ) : CreateInvoiceUseCase {
 
     override fun execute(command: CreateInvoiceCommand): InvoiceResult {

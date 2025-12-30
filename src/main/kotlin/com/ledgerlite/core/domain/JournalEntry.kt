@@ -1,5 +1,6 @@
 package com.ledgerlite.core.domain
 
+import com.ledgerlite.core.domain.vo.JournalLine
 import com.ledgerlite.core.domain.vo.Money
 import java.time.LocalDate
 

@@ -1,7 +1,7 @@
 package com.ledgerlite.core.usecase.service
 
 import com.ledgerlite.core.domain.JournalEntry
-import com.ledgerlite.core.domain.JournalLine
+import com.ledgerlite.core.domain.vo.JournalLine
 import com.ledgerlite.core.usecase.dto.command.SendInvoiceCommand
 import com.ledgerlite.core.usecase.`in`.SendInvoiceUseCase
 import com.ledgerlite.core.usecase.out.AccountRepository
@@ -35,8 +35,8 @@ class SendInvoiceService(
                 date = LocalDate.now(),
                 description = "Invoice sent: ${sentInvoice.id}",
                 lines = listOf(
-                    JournalLine.debit(arAccount.id!!, totalAmount),
-                    JournalLine.credit(revenueAccount.id!!, totalAmount)
+                    JournalLine.debit(arAccount.id, totalAmount),
+                    JournalLine.credit(revenueAccount.id, totalAmount)
                 )
             )
 

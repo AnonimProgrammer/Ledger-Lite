@@ -1,7 +1,7 @@
 package com.ledgerlite.dataprovider.jpa.mapper
 
 import com.ledgerlite.core.domain.JournalEntry
-import com.ledgerlite.core.domain.JournalLine
+import com.ledgerlite.core.domain.vo.JournalLine
 import com.ledgerlite.core.domain.vo.Money
 import com.ledgerlite.dataprovider.jpa.entity.JournalEntryJpaEntity
 import com.ledgerlite.dataprovider.jpa.entity.embeddable.JournalLineEmbeddable

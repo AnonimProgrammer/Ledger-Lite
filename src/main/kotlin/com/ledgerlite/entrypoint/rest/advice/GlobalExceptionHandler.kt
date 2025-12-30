@@ -3,6 +3,7 @@ package com.ledgerlite.entrypoint.rest.advice
 import com.ledgerlite.core.domain.error.InvalidInvoiceStateException
 import com.ledgerlite.dataprovider.exception.InvoiceNotFoundException
 import com.ledgerlite.dataprovider.exception.MissingAccountException
+import com.ledgerlite.dataprovider.exception.MissingJournalEntryException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.http.converter.HttpMessageNotReadableException
@@ -44,6 +45,17 @@ class GlobalExceptionHandler {
             LocalDateTime.now()
         )
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse)
+    }
+
+    @ExceptionHandler(MissingJournalEntryException::class)
+    fun handleMissingJournalEntryException(ex: MissingJournalEntryException): ResponseEntity<ErrorResponse> {
+        val errorResponse = ErrorResponse(
+            message = ex.message ?: "Journal entry not found.",
+            errorCode = HttpStatus.NOT_FOUND.value(),
+            errorType = HttpStatus.NOT_FOUND.name,
+            LocalDateTime.now()
+        )
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse)
     }
 
     @ExceptionHandler(HttpMessageNotReadableException::class)
