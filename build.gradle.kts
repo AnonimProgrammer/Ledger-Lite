@@ -21,6 +21,7 @@ repositories {
 }
 
 dependencies {
+    testImplementation("org.mockito.kotlin:mockito-kotlin:6.1.0")
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.springframework.boot:spring-boot-starter-webmvc")
